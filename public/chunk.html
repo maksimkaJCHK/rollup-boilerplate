@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rollup boilerplate</title>
+</head>
+<body>
+  <div id="main">
+    <div id="wrapper">
+      <div id="app"></div>
+      <div id="app1"></div>
+    </div>
+  </div>
+
+  <script>
+		import("./js/modules/common.js");
+		import("./js/modules/module-1.js");
+		import("./js/modules/module-2.js");
+		window.supportsDynamicImport = true;
+  </script>
+  
+  <!-- Для старых браузеров -->
+
+  <script>
+		if (!window.supportsDynamicImport) {
+      const systemJsLoaderTag = document.createElement('script');
+      // Если 11 IE не нужен подключить './js/library/system.js'
+			systemJsLoaderTag.src = './js/library/system-for-old-browsers.js';
+			systemJsLoaderTag.addEventListener('load', function () {
+				System.import('./js/modules-old-support/common.js');
+				System.import('./js/modules-old-support/module-1.js');
+				System.import('./js/modules-old-support/module-2.js');
+			});
+			document.head.appendChild(systemJsLoaderTag);
+		}
+	</script>
+
+</body>
+</html>
