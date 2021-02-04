@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import DogExample from './components/dogExample';
+import DogReducer from './store/reducers';
+import dogSaga from './saga/dogSaga';
+
 import './styles/style.scss';
-import './styles/style.less';
+
 const node = document.getElementById('app');
 
-export default class Primer extends Component {
-  render() {
-    let lngt = this.props.name.length;
+const sagaMiddleware = createSagaMiddleware();
 
-    return (
-      <div className = "brd">
-        <p>Привет { this.props.name }!</p>
-        <p>Твое имя содержит - <b>{ lngt }</b> символов</p>
-      </div>
-    );
-  }
-}
+const store = createStore(
+  DogReducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+sagaMiddleware.run(dogSaga);
 
 ReactDOM.render(
-  <Primer name="Максим" />,
+  <Provider store = { store } >
+    <DogExample />
+  </Provider>,
   node
 )

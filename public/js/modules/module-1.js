@@ -1,1 +1,0 @@
-import{r as e,a as n}from"./common.js";const t=document.getElementById("app");function l(e){let t=e.name.length;return n.createElement("div",{className:"brd"},n.createElement("p",null,"Привет ",e.name,"!"),n.createElement("p",null,"Твое имя содержит - ",n.createElement("b",null,t)," символов"))}e.render(n.createElement(l,{name:"Максимка"}),t);
