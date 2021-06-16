@@ -4,12 +4,12 @@ import '../styles/style.scss';
 const node = document.getElementById('app');
 
 function Primer(props) {
-  let lngt = props.name.length;
+  let { name } = props;
 
   return (
     <div className = "brd">
-      <p>Привет { props.name }!</p>
-      <p>Твое имя содержит - <b>{ lngt }</b> символов</p>
+      <p>Привет { name }!</p>
+      <p>Твое имя содержит - <b>{ name.length }</b> символов</p>
     </div>
   );
 }

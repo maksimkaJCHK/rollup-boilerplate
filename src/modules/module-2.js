@@ -5,12 +5,12 @@ const node = document.getElementById('app1');
 
 export default class Primer1 extends Component {
   render() {
-    let lngt = this.props.name.length;
+    let { name } = this.props;
 
     return (
       <div className = "brd">
-        <p>Привет {this.props.name}!</p>
-        <p>Твое имя содержит - <b>{lngt}</b> символов</p>
+        <p>Привет { name }!</p>
+        <p>Твое имя содержит - <b>{ name.length }</b> символов</p>
       </div>
     );
   }

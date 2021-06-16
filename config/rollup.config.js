@@ -15,7 +15,7 @@ export default {
     file: `${path.build}/main.js`,
     name: 'main',
     format: 'iife',
-    sourcemap: true
+    sourcemap: true,
   },
   plugins: [
     serve({

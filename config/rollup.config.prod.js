@@ -15,7 +15,7 @@ export default {
   output: {
     file: `${path.build}/main.js`,
     name: 'main',
-    format: 'iife'
+    format: 'iife',
   },
   plugins: [
     replace({
