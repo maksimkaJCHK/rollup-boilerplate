@@ -1,0 +1,13 @@
+{% extends "./layout/main.twig" %}
+
+{% block content %}
+  <h1>{{ header }}</h1>
+  <div class="dog-list">
+    {% for dog in dogs %}
+      <a href="http://localhost:3000/dog/{{ loop.index }}">
+        <img src="{{ dog.message }}" alt="Dog">
+      </a>
+    {% endfor %}
+  </div>
+  <a href="http://localhost:3000/">Вернуться на главную страницу</a>
+{% endblock content %}

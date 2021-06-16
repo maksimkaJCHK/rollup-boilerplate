@@ -16,7 +16,7 @@ export default {
     name: 'main',
     format: 'iife',
     sourcemap: true,
-    intro: 'const API_URL = "https://dog.ceo/api/breeds/image/random";'
+    intro: 'const API_URL = "http://localhost:3000/api/";'
   },
   plugins: [
     serve({

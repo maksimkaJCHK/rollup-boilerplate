@@ -1,0 +1,19 @@
+{
+  "name": "express.js",
+  "version": "0.0.1",
+  "description": "Express",
+  "main": "main.js",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "twig": "^1.15.4"
+  },
+  "scripts": {
+    "serve": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

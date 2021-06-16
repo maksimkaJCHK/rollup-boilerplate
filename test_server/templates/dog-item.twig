@@ -1,0 +1,10 @@
+{% extends "./layout/main.twig" %}
+
+{% block content %}
+  <h1>{{ header }}</h1>
+  <a href="http://localhost:3000/dog">Назад</a>
+  <figute class="dog-item">
+    <img src="http://localhost:3000/img/dog/{{ dog }}.jpg" alt="Dog">
+  </figute>
+  <a href="http://localhost:3000/dog">Назад</a>
+{% endblock content %}

@@ -1,4 +1,4 @@
-import { ADD_DOG, LOAD_DOG } from '../store/const';
+import { ADD_DOG, LOAD_DOG } from './const';
 
 const DogReducer = (state = { url: null, load: false }, action) => {
   switch(action.type) {

@@ -1,3 +1,5 @@
 node_modules
 package-lock.json
+test_server/node_modules
+test_server/package-lock.json
 .size-snapshot.json

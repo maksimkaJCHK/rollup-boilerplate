@@ -7,12 +7,12 @@ import { addDog } from '../store/actions';
 import { LOAD_DOG } from '../store/const';
 
 function API() {
-  return Axios('https://dog.ceo/api/breeds/image/random');
+  return Axios(`${API_URL}`);
 }
 
 function* dogLoad() {
-  let data = yield call(API);
-  yield put(addDog(data.data.message));
+  let param = yield call(API);
+  yield put(addDog(param.data.message));
 }
 
 function* watchDogLoad() {

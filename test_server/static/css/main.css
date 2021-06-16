@@ -1,0 +1,36 @@
+main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  font: 16px/120% tahoma;
+}
+main h1 {
+  font-size: 24px;
+  font-weight: normal;
+}
+main a {
+  color: #2518d4;
+}
+main a:hover {
+  text-decoration: none;
+}
+
+.dog-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.dog-list a {
+  display: block;
+  width: 20%;
+  text-decoration: none;
+}
+.dog-list img {
+  display: block;
+  max-width: 100%;
+}
+
+.dog-item img {
+  display: block;
+  max-width: 100%;
+}

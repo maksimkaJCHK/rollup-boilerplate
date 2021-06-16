@@ -1,4 +1,4 @@
-import { ADD_DOG, LOAD_DOG } from '../store/const';
+import { ADD_DOG, LOAD_DOG } from './const';
 
 export const addDog = (url) => {
   return {

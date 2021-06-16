@@ -15,7 +15,8 @@ export default {
   output: {
     file: `${path.build}/main.js`,
     name: 'main',
-    format: 'iife'
+    format: 'iife',
+    intro: 'const API_URL = "https://dog.ceo/api/breeds/image/random";'
   },
   plugins: [
     replace({
