@@ -15,10 +15,15 @@ export default {
   output: {
     file: `${path.build}/main.js`,
     name: 'main',
-    format: 'iife'
+    format: 'iife',
+    chunkFileNames() {
+      return 'common.js'
+    }
   },
   plugins: [
     replace({
+      preventAssignment: true,
+      'process.browser': true,
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     resolve({
@@ -27,7 +32,8 @@ export default {
     }),
     postcss({
       extract: true,
-      extract: 'css/extract.css',
+      extract: 'css/main.css',
+      minimize: true,
       plugins: [
         autoprefixer(),
         url({

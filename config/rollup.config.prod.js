@@ -16,9 +16,14 @@ export default {
     file: `${path.build}/main.js`,
     name: 'main',
     format: 'iife',
+    chunkFileNames() {
+      return 'common.js'
+    }
   },
   plugins: [
     replace({
+      preventAssignment: true,
+      'process.browser': true,
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     resolve({

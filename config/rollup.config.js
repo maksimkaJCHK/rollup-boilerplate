@@ -15,7 +15,10 @@ export default {
     file: `${path.build}/main.js`,
     name: 'main',
     format: 'iife',
-    sourcemap: true,
+    sourcemap: 'inline',
+    chunkFileNames() {
+      return 'common.js'
+    }
   },
   plugins: [
     serve({
@@ -29,6 +32,8 @@ export default {
       watch: `${path.build}`,
     }),
     replace({
+      preventAssignment: true,
+      'process.browser': true,
       'process.env.NODE_ENV': JSON.stringify('development')
     }),
     resolve({

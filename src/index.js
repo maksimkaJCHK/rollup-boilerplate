@@ -1,13 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
+
 import './styles/style.scss';
 import './styles/style.less';
 
 const node = document.getElementById('app');
+const root = ReactDOM.createRoot(node);
 
 const Primer = (props) => {
-
-  let { name } = props;
+  const { name } = props;
 
   return (
     <div className = "brd">
@@ -17,7 +18,4 @@ const Primer = (props) => {
   );
 }
 
-ReactDOM.render(
-  <Primer name="Максим" />,
-  node
-)
+root.render(<Primer name="Максим" />);
