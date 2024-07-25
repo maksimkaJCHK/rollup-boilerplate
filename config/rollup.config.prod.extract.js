@@ -8,12 +8,16 @@ import url from 'postcss-url';
 import autoprefixer from 'autoprefixer';
 import sizes from "rollup-plugin-sizes";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
-import path from './path';
+import alias from '@rollup/plugin-alias';
+import appRoot from 'app-root-path';
+import path from 'path';
+
+import paths from './paths';
 
 export default {
-  input: `${path.src}/index.js`,
+  input: `${paths.src}/Main.js`,
   output: {
-    file: `${path.build}/main.js`,
+    file: `${paths.build}/main.js`,
     name: 'main',
     format: 'iife',
     chunkFileNames() {
@@ -29,6 +33,14 @@ export default {
     resolve({
       extensions: ['.js', '.jsx'],
       browser: true,
+    }),
+    alias({
+      entries: [
+        {
+          find: '@',
+          replacement: path.resolve(appRoot.path, 'src'), 
+        },
+      ]
     }),
     postcss({
       extract: true,

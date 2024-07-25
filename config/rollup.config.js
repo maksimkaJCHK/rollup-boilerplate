@@ -7,12 +7,16 @@ import replace from '@rollup/plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import url from 'postcss-url';
 import autoprefixer from 'autoprefixer';
-import path from './path';
+import alias from '@rollup/plugin-alias';
+import appRoot from 'app-root-path';
+import path from 'path';
+
+import paths from './paths';
 
 export default {
-  input: `${path.src}/index.js`,
+  input: [`${paths.src}/Main.js`],
   output: {
-    file: `${path.build}/main.js`,
+    file: `${paths.build}/main.js`,
     name: 'main',
     format: 'iife',
     sourcemap: 'inline',
@@ -42,6 +46,14 @@ export default {
     resolve({
       extensions: ['.js', '.jsx'],
       browser: true,
+    }),
+    alias({
+      entries: [
+        {
+          find: '@',
+          replacement: path.resolve(appRoot.path, 'src'), 
+        },
+      ]
     }),
     postcss({
       plugins: [

@@ -1,7 +1,7 @@
-const path = {
+const paths = {
   src: './src',
   public: './public',
   build: './public/js'
 }
 
-export default path;
+export default paths;
