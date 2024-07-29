@@ -1,6 +1,7 @@
 import { terser } from "rollup-plugin-terser";
 import sizes from "rollup-plugin-sizes";
 import { sizeSnapshot } from "rollup-plugin-size-snapshot";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import inputOutput from './services/input-output';
 import bPlugins from './services/plugins';
@@ -21,5 +22,9 @@ export default {
     }),
     sizeSnapshot(),
     sizes(),
+    visualizer({
+      emitFile: false,
+      filename: "visualizations.html",
+    }),
   ],
 };
