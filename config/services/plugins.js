@@ -6,6 +6,7 @@ import url from 'postcss-url';
 import autoprefixer from 'autoprefixer';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import image from '@rollup/plugin-image';
 
 import appRoot from 'app-root-path';
 import path from 'path';
@@ -21,6 +22,7 @@ const bPlugins = (extract = false) => {
       extensions: ['.js', '.jsx'],
       browser: true,
     }),
+    image(),
     alias({
       entries: [
         {
