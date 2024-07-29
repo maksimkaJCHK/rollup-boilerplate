@@ -13,7 +13,7 @@ export default {
   ...inputOutput,
   plugins: [
     serve({
-      open: true,
+      open: false,
       openPage: '',
       contentBase: ['public'],
       host: 'localhost',
