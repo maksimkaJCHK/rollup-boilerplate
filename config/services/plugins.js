@@ -34,6 +34,11 @@ const bPlugins = (extract = false) => {
     extract ? postcss({
       extract: 'css/main.css',
       minimize: true,
+      use: {
+        sass: {
+          silenceDeprecations: ["legacy-js-api"]
+        }
+      },
       plugins: [
         autoprefixer(),
         url({
@@ -43,6 +48,11 @@ const bPlugins = (extract = false) => {
         }),
       ],
     }) : postcss({
+      use: {
+        sass: {
+          silenceDeprecations: ["legacy-js-api"]
+        }
+      },
       plugins: [
         autoprefixer(),
         url({
