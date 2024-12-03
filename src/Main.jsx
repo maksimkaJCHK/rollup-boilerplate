@@ -11,7 +11,7 @@ const Primer = (props) => {
   const { name } = props;
 
   return (
-    <div className = "brd">
+    <div className="brd">
       <p>Привет { name }!!!</p>
       <p>Твое имя содержит - <b>{ name.length }</b> символов</p>
     </div>

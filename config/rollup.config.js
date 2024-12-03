@@ -7,7 +7,7 @@ import bPlugins from './services/plugins.js';
 
 inputOutput.output.sourcemap = 'inline';
 
-const plugins = bPlugins();
+const plugins = bPlugins('development');
 
 export default {
   ...inputOutput,

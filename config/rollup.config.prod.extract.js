@@ -5,7 +5,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import inputOutput from './services/input-output.js';
 import bPlugins from './services/plugins.js';
 
-const plugins = bPlugins(true);
+const plugins = bPlugins('production', true);
 
 export default {
   ...inputOutput,

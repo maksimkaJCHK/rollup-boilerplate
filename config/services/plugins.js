@@ -4,19 +4,41 @@ import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import url from 'postcss-url';
 import autoprefixer from 'autoprefixer';
-import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import swc from '@rollup/plugin-swc';
 import image from '@rollup/plugin-image';
 
 import appRoot from 'app-root-path';
 import path from 'path';
 
-const bPlugins = (extract = false) => {
+let postCSSParams = {
+  use: {
+    sass: {
+      silenceDeprecations: ["legacy-js-api"]
+    }
+  },
+  plugins: [
+    autoprefixer(),
+    url({
+      url: "inline",
+      maxSize: 10,
+      fallback: "copy",
+    }),
+  ],
+}
+
+const bPlugins = (regime = 'production', extract = false) => {
+  if (extract) postCSSParams = {
+    extract: 'css/main.css',
+    minimize: true,
+    ...postCSSParams
+  }
+
   return [
     replace({
       preventAssignment: true,
       'process.browser': true,
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify(regime)
     }),
     resolve({
       extensions: ['.js', '.jsx'],
@@ -31,64 +53,53 @@ const bPlugins = (extract = false) => {
         },
       ]
     }),
-    extract ? postcss({
-      extract: 'css/main.css',
-      minimize: true,
-      use: {
-        sass: {
-          silenceDeprecations: ["legacy-js-api"]
-        }
-      },
-      plugins: [
-        autoprefixer(),
-        url({
-          url: "inline",
-          maxSize: 10,
-          fallback: "copy",
-        }),
-      ],
-    }) : postcss({
-      use: {
-        sass: {
-          silenceDeprecations: ["legacy-js-api"]
-        }
-      },
-      plugins: [
-        autoprefixer(),
-        url({
-          url: "inline",
-          maxSize: 10,
-          fallback: "copy",
-        }),
-      ],
-    }),
-    babel({
-      babelHelpers: 'bundled',
-      presets: [
-        "@babel/preset-react",
-      ],
-      plugins: [],
-      exclude: 'node_modules/**',
-    }),
+    postcss(postCSSParams),
     commonjs(),
-    babel({
-      babelHelpers: 'bundled',
-      exclude: 'node_modules/**',
-      presets: [
-        [
-          "@babel/preset-env",
-          {
-            "debug": false,
-            "useBuiltIns": "entry",
-            "modules": false,
-            "corejs": 3,
-            "targets": {
-              "chrome": "80",
-              "edge": "80"
+    swc({
+      swc: {
+        minify: false,
+        jsc: {
+          target: "es2020",
+          parser: {
+            syntax: "ecmascript",
+            jsx: true,
+            numericSeparator: false,
+            classPrivateProperty: false,
+            privateMethod: false,
+            classProperty: false,
+            functionBind: false,
+            decorators: false,
+            decoratorsBeforeExport: false
+          },
+          transform: {
+            react: {
+              pragma: "React.createElement",
+              pragmaFrag: "React.Fragment",
+              throwIfNamespace: true,
+              development: false,
+              useBuiltins: false
+            },
+            optimizer: {
+              globals: {
+                vars: {
+                  "__DEBUG__": "true"
+                }
+              }
+            }
+          },
+          minify: {
+            compress: {
+              unused: true,
+              drop_console: true,
+            },
+            mangle: true,
+            format: {
+              braces: true,
+              comments: false,
             }
           }
-        ],
-      ]
+        }
+      }
     }),
   ]
 }
